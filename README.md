@@ -1,134 +1,123 @@
 # Automata: The Future is Self-Written
 
-![Banner](./automata_banner.png)
-
 [![codecov](https://codecov.io/github/emrgnt-cmplxty/Automata/branch/main/graph/badge.svg?token=ZNE7RDUJQD)](https://codecov.io/github/emrgnt-cmplxty/Automata)
+[![CodeFactor](https://www.codefactor.io/repository/github/emrgnt-cmplxty/automata/badge)](https://www.codefactor.io/repository/github/emrgnt-cmplxty/automata)
+  <a href="https://github.com/emrgnt-cmplxty/automata/blob/main/LICENSE" target="_blank">
+      <img src="https://img.shields.io/static/v1?label=license&message=Apache 2.0&color=white" alt="License">
+  </a> 
 [![Documentation Status](https://readthedocs.org/projects/automata/badge/?version=latest)](https://automata.readthedocs.io/en/latest/?badge=latest)
-[![Type Checking](https://github.com/emrgnt-cmplxty/Automata/actions/workflows/check-mypy.yml/badge.svg)](https://github.com/emrgnt-cmplxty/Automata/actions/workflows/check-mypy.yml)
+
+## Socials
 [![Discord](https://img.shields.io/discord/1120774652915105934?logo=discord)](https://discord.gg/j9GxfbxqAe)
 [![Twitter Follow](https://img.shields.io/twitter/follow/ocolegro?style=social)](https://twitter.com/ocolegro)
+[![GitHub star chart](https://img.shields.io/github/stars/emrgnt-cmplxty/Automata?style=social)](https://star-history.com/#emrgnt-cmplxty/Automata)
 
-**Automata's objective is to evolve into a fully autonomous, self-programming Artificial Intelligence system**.
 
-This project is inspired by the theory that code is essentially a form of memory, and when furnished with the right tools, AI can evolve real-time capabilities which can potentially lead to the creation of AGI. The word automata comes from the Greek word αὐτόματος, denoting "self-acting, self-willed, self-moving,", and [Automata theory](https://en.wikipedia.org/wiki/Automata_theory) is the study of abstract machines and [automata](https://en.wikipedia.org/wiki/Automaton), as well as the computational problems that can be solved using them. More information follows below.
 
-## 🧠 [Read the Docs](https://automata.readthedocs.io/en/latest/)
+### **Automata's objective is to evolve into a fully autonomous, self-programming Artificial Intelligence system**.
+
+Automata is inspired by the theory that code is essentially a form of memory, and when furnished with the right tools, AI can evolve real-time capabilities which can potentially lead to the creation of AGI. The word automata comes from the Greek word αὐτόματος, denoting "self-acting, self-willed, self-moving,", and [Automata theory](https://en.wikipedia.org/wiki/Automata_theory) is the study of abstract machines and [automata](https://en.wikipedia.org/wiki/Automaton), as well as the computational problems that can be solved using them. 
+
+More information follows below.
+
+## Codespace
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/emrgnt-cmplxty/Automata)
+
+## Rough Schematic
+
+<p align="center">
+    <img width="971" alt="Rough_Schematic_06_30_23_" src="https://github.com/emrgnt-cmplxty/Automata/assets/68796651/f73f37ac-6335-4066-b9bc-79f9a2652cc1">
+</p>
 
 ---
 
 ## Demo
 
-https://github.com/emrgnt-cmplxty/Automata/assets/68796651/9b27de2b-d3d3-422b-b21e-8b3c2c9e8dce
+https://github.com/emrgnt-cmplxty/Automata/assets/68796651/2e1ceb8c-ac93-432b-af42-c383ea7607d7
 
-_Note - This demo will shortly be expanded to be more autonomous. E.g. automatically fetching the GitHub issues given a user specification and automatically writing the code // creating a PR. These are minor additions to the core logic demonstrated above._
-
-<img width="1059" alt="Automata_Rough_Schematic_06_22_23" src="https://github.com/emrgnt-cmplxty/Automata/assets/68796651/57ae3418-c01b-4b3f-a548-2f050c234b34">
-
----
 
 ## Installation and Usage
+
+### 🧠 [Stuck? Try the Docs](https://automata.readthedocs.io/en/latest/)
 
 ### Initial Setup
 
 Follow these steps to setup the Automata environment
 
 ```bash
-## NOTE - the code below is contained in setup.sh.example
-
 # Clone the repository
-git clone git@github.com:emrgnt-cmplxty/Automata.git
-cd Automata
+git clone git@github.com:emrgnt-cmplxty/Automata.git && cd Automata/
 
-# Create the local environment
-python3 -m venv local_env
-source local_env/bin/activate
+# Initialize git submodules
+git submodule update --init
 
-# Install the project in editable mode
-pip3 install -e .
+# Install poetry and the project
+pip3 install poetry && poetry install
 
-# Setup pre-commit hooks
-pre-commit install
-
-# Set up .env
-cp .env.example .env
-OPEN_API_KEY=your_openai_api_key_here
-GITHUB_API_KEY=your_github_api_key
-CONVERSATION_DB_PATH="$PWD/conversation_db.sqlite3"
-TASK_DB_PATH="$PWD/task_db.sqlite3"
-TASKS_OUTPUT_PATH="$PWD/tasks"
-REPOSITORY_NAME="emrgnt-cmplxty/Automata"
-sed -i "s|your_openai_api_key|$OPEN_API_KEY|" .env
-sed -i "s|your_github_api_key|$GITHUB_API_KEY|" .env
-sed -i "s|your_conversation_db_path|$CONVERSATION_DB_PATH|" .env
-sed -i "s|your_task_db_path|$TASK_DB_PATH|" .env
-sed -i "s|your_tasks_output_path|$TASKS_OUTPUT_PATH|" .env
-sed -i "s|your_repository_name|$REPOSITORY_NAME|" .env
-# Additional Notes -
-# Default Max Workers is 8, manually change the .env to update this quantity.
-# For MAC users, the example should read as follows -
-## sed -i '' "s|your_openai_api_key|$OPEN_API_KEY|" .env
-
-# Fetch the submodules
-git submodule update --init --recursive
-
-### NOTE - You must install git-lfs, if you have not done so already
-
-### For Ubuntu, run the following:
-##  sudo apt-get install git-lfs
-### For Mac, run the following:
-##  brew install git-lfs
-###
-### Then, initialize by running the following:
-##  git lfs install
-##  git lfs pull
+# Configure the environment and setup files
+poetry run automata configure
 ```
+
+<details>
+<summary>Installation via Docker</summary>
+<br>
+You can also install Automata through Docker.
+
+Pull the Docker image:
+```console
+$ docker pull ghcr.io/emrgnt-cmplxty/automata:latest
+```
+
+Run the Docker image:
+```console
+$ docker run --name automata_container -it --rm -e OPENAI_API_KEY=<your_openai_key> -e GITHUB_API_KEY=<your_github_key> ghcr.io/emrgnt-cmplxty/automata:latest
+```
+
+This will start a Docker container with Automata installed and open an interactive shell for you to use.
+</details>
+
+<details>
+<summary>Windows Tips</summary>
+
+Windows users may need to install C++ support through [Visual Studio's "Desktop development with C++"](https://visualstudio.microsoft.com/downloads/?q=build+tools) for certain dependencies.
+
+Additionally, updating to gcc-11 and g++-11 may be required. This can be done by running the following commands:
+
+```bash
+# Adds the test toolchain repository, which contains newer versions of software
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+
+# Updates the list of packages on your system
+sudo apt update
+
+# Installs gcc-11 and g++-11 packages
+sudo apt install gcc-11 g++-11
+
+# Sets gcc-11 and g++-11 as the default gcc and g++ versions for your system
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60 --slave /usr/bin/g++ g++ /usr/bin/g++-11
+```
+
+</details>
 
 ### Indexing
 
-[SCIP indices](https://about.sourcegraph.com/blog/announcing-scip) are required to run the Automata Search. These indices are used to create the code graph which relates all dependencies. New indices are generated and uploaded periodically for the Automata Interpreter codebase, but developers must be generate them manually if necessary for their local development. If you encounter issues, we recommending referring to the [instructions here](https://github.com/sourcegraph/scip-python).
+[SCIP indices](https://about.sourcegraph.com/blog/announcing-scip) are required to run the Automata Search. These indices are used to create the code graph which relates symbols by dependencies across the codebase. New indices are generated and uploaded periodically for the Automata codebase, but programmers must be generate them manually if necessary for their local development. If you encounter issues, we recommend referring to the [instructions here](https://github.com/sourcegraph/scip-python).
 
 ```bash
-# Activate the local repository
-source local_env/bin/activate
-
-# Install scip-python locally
-cd scip-python
-npm install
-
-# Build the tool
-cd packages/pyright-scip
-npm run build
-
-# Return to working dir
-cd ../../../
-
-# Generate the local index
-node scip-python/packages/pyright-scip/index index  --project-name automata --output index_from_fork.scip  --target-only automata
-
-# Copy into the default index location
-mv index_from_fork.scip automata/config/symbol/index.scip
-
-
-### Alternatively, you mean run ./regenerate_index after changing local permissions and completing the above install.
+# Install dependencies and run indexing on the local codebase
+poetry run automata install-indexing
 ```
 
 ### Build the embeddings + docs
 
-The following commands will build the embeddings and docs for the Automata Interpreter codebase. This process can take a while, so we recommend running it in the background.
-
-```bash
-# Build/refresh the code embeddings
-automata run-code-embedding
-
-# "L1" docs are the docstrings written into the code
-# "L2" docs are generated from the L1 docs + symbol context
-# Build/refresh and embed the L2 docs
-automata run-doc-embedding-l2
-
-# "L3" docs are generated from the L2 docs + symbol context
-# Build/refresh and embed the L3 docs
-automata run-doc-embedding-l3
 ```
+# Refresh the code embeddings (after making local changes)
+poetry run automata run-code-embedding
+
+# Refresh the documentation + embeddings
+poetry run automata run-doc-embedding --embedding-level=2
+```
+
 
 ### Run the system
 
@@ -136,17 +125,10 @@ The following commands illustrate how to run the system with a trivial instructi
 
 ```bash
 # Run a single agent w/ trivial instruction
-automata run-agent --instructions="Return true" --model=gpt-3.5-turbo-0613
+poetry run  automata run-agent --instructions="Return true" --model=gpt-3.5-turbo-0613
 
 # Run a single agent w/ a non-trivial instruction
-automata run-agent --instructions="Explain what AutomataAgent is and how it works, include an example to initialize an instance of AutomataAgent." --model=gpt-3.5-turbo-16k
-
-# Runs a single agent as a task 
-# (this will create a task in the task_db.sqlite3)
-# (this will also create a task in the tasks/ directory)
-# (modifications to code are performed in the tasks/ directory)
-# TODO - Revive this functionality
-# automata run-agent-task --instructions="Return true" --model=gpt-3.5-turbo-0613
+poetry run automata run-agent --instructions="Explain what AutomataAgent is and how it works, include an example to initialize an instance of AutomataAgent."
 ```
 
 ---
@@ -157,59 +139,39 @@ Automata works by combining Large Language Models, such as GPT-4, with a vector 
 
 Automata employs downstream tooling to execute advanced coding tasks, continually building its expertise and autonomy. This self-coding approach mirrors an autonomous craftsman's work, where tools and techniques are consistently refined based on feedback and accumulated experience.
 
-### Example - Running your own agent
+### Example - Building your own agent
 
 Sometimes the best way to understand a complicated system is to start by understanding a basic example. The following example illustrates how to run your own Automata agent. The agent will be initialized with a trivial instruction, and will then attempt to write code to fulfill the instruction. The agent will then return the result of its attempt.
 
 ```python
 
-import logging
-from typing import Any, Set
+from automata.config.base import AgentConfigName, OpenAIAutomataAgentConfigBuilder
+from automata.agent import OpenAIAutomataAgent
+from automata.singletons.dependency_factory import dependency_factory
+from automata.singletons.py_module_loader import py_module_loader
+from automata.tools.factory import AgentToolFactory
 
-from automata.config.base import AgentConfigName
-from automata.config.openai_agent import AutomataOpenAIAgentConfigBuilder
-from automata.core.agent.agents import AutomataOpenAIAgent
-from automata.core.agent.tool.tool_utils import AgentToolFactory, DependencyFactory
-from automata.core.base.agent import AgentToolProviders
-from automata.core.base.github_manager import GitHubManager
-from automata.core.coding.py.module_loader import py_module_loader
-
-logger = logging.getLogger(__name__)
-
-# Initialize the module loader
+# Initialize the module loader to the local directory
 py_module_loader.initialize()
 
-
 # Construct the set of all dependencies that will be used to build the tools
-tool_list = ["context_oracle"]
-dependencies: Set[Any] = set()
-tool_dependencies = {}
-
-for tool in tool_list:
-    for dependency_name, _ in AgentToolFactory.TOOLKIT_TYPE_TO_ARGS[AgentToolProviders(tool)]:
-        if dependency_name not in dependencies:
-            dependencies.add(dependency_name)
-            logger.info(f"  - Building Dependency {dependency_name}...")
-            tool_dependencies[dependency_name] = DependencyFactory().get(dependency_name)
+toolkit_list = ["context-oracle"]
+tool_dependencies = dependency_factory.build_dependencies_for_tools(toolkit_list)
 
 # Build the tools
-tools = AgentToolFactory.build_tools(tool_list, **tool_dependencies)
+tools = AgentToolFactory.build_tools(toolkit_list, **tool_dependencies)
 
 # Build the agent config
-config_name = AgentConfigName("automata_main")
-
 agent_config = (
-    AutomataOpenAIAgentConfigBuilder.from_name(config_name)
+    OpenAIAutomataAgentConfigBuilder.from_name("automata-main")
     .with_tools(tools)
     .with_model("gpt-4")
     .build()
 )
 
-# Initialize the agent
+# Initialize and run the agent
 instructions = "Explain how embeddings are used by the codebase"
-agent = AutomataOpenAIAgent(instructions, config=agent_config)
-
-# Run the agent
+agent = OpenAIAutomataAgent(instructions, config=agent_config)
 result = agent.run()
 ```
 
@@ -223,12 +185,13 @@ Examples of these classes are:
 `SymbolDocEmbedding` a class used for storing embeddings related to the documentation of a symbol.
 
 Code example for creating an instance of 'SymbolCodeEmbedding':
+
 ```python
 import numpy as np
-from automata.core.symbol.symbol_types import SymbolCodeEmbedding
-from automata.core.symbol.parser import parse_symbol
+from automata.symbol_embedding.base import SymbolCodeEmbedding
+from automata.symbol.parser import parse_symbol
 
-symbol_str = 'scip-python python automata 75482692a6fe30c72db516201a6f47d9fb4af065 `automata.core.agent.agent_enums`/ActionIndicator#'
+symbol_str = 'scip-python python automata 75482692a6fe30c72db516201a6f47d9fb4af065 `automata.agent.agent_enums`/ActionIndicator#'
 symbol = parse_symbol(symbol_str)
 source_code = 'symbol_source'
 vector = np.array([1, 0, 0, 0])
@@ -237,9 +200,10 @@ embedding = SymbolCodeEmbedding(symbol=symbol, source_code=source_code, vector=v
 ```
 
 Code example for creating an instance of 'SymbolDocEmbedding':
+
 ```python
-from automata.core.symbol.symbol_types import SymbolDocEmbedding
-from automata.core.symbol.parser import parse_symbol
+from automata.symbol_embedding.base import SymbolDocEmbedding
+from automata.symbol.parser import parse_symbol
 import numpy as np
 
 symbol = parse_symbol('your_symbol_here')
@@ -251,29 +215,26 @@ symbol_doc_embedding = SymbolDocEmbedding(symbol, document, vector)
 
 </details>
 
-## SymbolRank
+## Contribution guidelines
 
-We have developed SymbolRank for Automata, a semantic code analyzer for software corpora. Leveraging language models and graph theory, SymbolRank assesses and ranks symbols such as classes and methods based on their semantic context and structural relationships within the software. The algorithm starts by embedding a global context using a concrete implementation of the SymbolEmbeddingHandler class, which applies OpenAI's API to generate vector representations of each symbol in the source code. These embeddings capture the semantic essence of the symbols, providing a basis for the subsequent stages of the process.
+**If you want to contribute to Automata, be sure to review the
+[contribution guidelines](CONTRIBUTING.md). This project adheres to Automata's
+[code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to
+uphold this code.**
 
-Simultaneously, the software corpus is used to construct a SymbolGraph. Each symbol in the corpus becomes a node in this graph, with dependencies between symbols forming the edges. The graph provides a comprehensive map of structural information in the codebase, offering methods to understand symbol dependencies, relationships, callers, and callees, and the ability to produce a rankable subgraph of symbols.
+We use [GitHub issues](https://github.com/emrgnt-cmplxty/automata/issues) for
+tracking requests and bugs, please see
+[Automata Discussions](https://github.com/emrgnt-cmplxty/Automata/discussions/) for general questions and
+discussion, and please direct specific questions.
 
-The SymbolRank class then uses a prepared similarity dictionary for a given query and the SymbolGraph. The algorithm subsequently executes an iterative computation akin to Google's PageRank, but considers both the symbols' similarity scores to the query and their connectivity within the graph. This amalgamation of natural language processing, information retrieval, and graph theory methods results in a ranking of code symbols, significantly aiding tasks like code understanding, navigation, recommendation, and search.
-
-## Hierarchical Operation
-
-Automata operates in a hierarchical structure, where agents at lower levels specialize in specific tasks like generating code snippets or analyzing a document segment. In contrast, higher-level agents supervise lower-level operations, assemble their outputs into a coherent whole, and strategically decide on the project's direction. This system, inspired by human cognition and organization theories, facilitates the emergence of complex behavior from the collaboration of simpler, specialized subsystems.
-
-Automata's design accommodates extensibility, enabling seamless integration with various APIs and libraries to enhance its capabilities. Additionally, it can leverage external data sources and real-time feedback from its interactions to constantly update its knowledge and skills.
+The Automata project strives to abide by generally accepted best practices in
+open-source software development.
 
 ## Future
 
-The ultimate goal of the Automata system is to achieve a level of proficiency where it can independently design, write, test, and refine complex software systems. This includes the ability to understand and navigate large codebases, reason about software architecture, optimize performance, and even invent new algorithms or data structures when necessary.
+The ultimate goal of the Automata project is to achieve a level of proficiency where it can independently design, write, test, and refine complex software systems. This includes the ability to understand and navigate large codebases, reason about software architecture, optimize performance, and even invent new algorithms or data structures when necessary.
 
 While the complete realization of this goal is likely to be a complex and long-term endeavor, each incremental step towards it not only has the potential to dramatically increase the productivity of human programmers, but also to shed light on fundamental questions in AI and computer science.
-
-## Inspiration and Future Endeavors
-
-Automata was born from the amalgamation of inspiring projects like [Auto-GPT](https://github.com/Significant-Gravitas/Auto-GPT), [BabyAGI](https://github.com/yoheinakajima/babyagi), [AgentGPT](https://github.com/reworkd/AgentGPT), and [GPT-Engineer](https://github.com/AntonOsika/gpt-engineer) and is designed to inspire many more. We're eager to see what you're building and how we can learn and evolve together in this uncharted AI territory.
 
 ## License
 

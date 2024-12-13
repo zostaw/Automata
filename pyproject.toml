@@ -1,29 +1,40 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-
-[tool.poetry.scripts]
-automata = 'automata.cli.__main__:cli'
+requires = ["poetry-core", "setuptools", "wheel"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "automata"
 version = "0.1.0"
 description = "Automata: The Self-Coding Machine"
-authors = ["owen@emergentagi.com"]
+authors = ["Owen Colegrove <owen@emergentagi.com>"]
+license = "Apache-2.0"
+readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-# Add your project dependencies here
+python = ">=3.10,<3.12"
+colorlog = "6.7.0"
+numpy = "1.25.2"
+openai = "0.27.8"
+pydantic = "^1.9.0"
+python-dotenv = "1.0.0"
+termcolor = "2.3.0"
+tiktoken = "0.4.0"
+requests = "^2.31.0"
+sympy = "^1.12"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.0"
-
-[tool.pytest.ini_options]
-filterwarnings = ["ignore::DeprecationWarning:jsonspec.*"]
-addopts = "-m 'not regression' --ignore=**/sample_modules/* --ignore=scip-python/ --ignore=tasks/"
-markers = ["regression: marks tests as regression tests"]
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "5.12.0"
+flake8 = "6.1.0"
+mypy = "^1.5.1"
+pre-commit = "^3.3.3"
+types-requests = "^2.31.0.2"
+types-attrs = "^19.1.0"
+sourcery = "^1.6.0"
+yapf = "0.40.1"
 
 [tool.black]
-line-length = 99
+line-length = 79
 include = '\.pyi?$'
 exclude = '''
 (
@@ -34,55 +45,22 @@ exclude = '''
     | \.mypy_cache
     | \.tox
     | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-    | random
-    | local_env
-    | build
-    | scip-python
-    | tasks
   )/
 )
 '''
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 99
-skip_glob = ["local_env/*", "**/sample_code/*"]
 
 [tool.mypy]
 # other mypy configurations go here
 # uncomment if this is being really annoying again
 ignore_missing_imports = true
-exclude = '(local_env|scip-python|__pycache__|tasks|sample_modules)/'
+exclude = '(scip-python|__pycache__|local_tasks|sample_modules|playground|leetcode_hard_gym|evalplus)/'
 
 [[tool.mypy.overrides]]
 module = "pytz.*"
 ignore_missing_imports = true
 
-[[tool.mypy.overrides]]
-module = "yaml"
-ignore_missing_imports = true
-
-[tool.coverage.run]
-source = ["."]
-omit = ["*/tests/*", "*/site-packages/*", "*/distutils/*", "*/venv/*", "setup.py", "conftest.py"]
-
-[tool.coverage.report]
-precision = 2
-omit = ["*/tests/*", "*/site-packages/*", "*/distutils/*", "*/venv/*", "setup.py", "conftest.py"]
-
 [tool.coverage.html]
 directory = "htmlcov/"
-
-[tool.codecov]
-require_ci_to_pass = true
 
 [tool.flake8]
 ignore = ["E501", "W503"]

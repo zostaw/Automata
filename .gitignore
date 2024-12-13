@@ -52,8 +52,18 @@ coverage*
 .coverage*
 
 # Ignore Local
-notebooks/
-local_env/*
+examples/
+automata_embedding_factory/
 playground/*
 *.sqlite3
-tasks/
+local_tasks/
+scripts/setup.sh
+setup.sh
+.direnv
+docs/_build
+.chroma
+##FIXME- The following should be removed by tests, but aren't at times
+tests/test_output_vec
+automata/test_output
+automata/test_module*
+tests/unit/sample_module_22.py
